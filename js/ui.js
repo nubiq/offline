@@ -138,16 +138,13 @@
     });
   };
 
-  if (document.addEventListener != null) {
-    document.addEventListener('DOMContentLoaded', init, false);
-  } else {
-    _onreadystatechange = document.onreadystatechange;
-    document.onreadystatechange = function() {
-      if (document.readyState === 'complete') {
-        init();
-      }
-      return typeof _onreadystatechange === "function" ? _onreadystatechange.apply(null, arguments) : void 0;
-    };
-  }
+  _onreadystatechange = document.onreadystatechange;
+
+  document.onreadystatechange = function() {
+    if (document.readyState === 'complete') {
+      init();
+    }
+    return typeof _onreadystatechange === "function" ? _onreadystatechange.apply(null, arguments) : void 0;
+  };
 
 }).call(this);

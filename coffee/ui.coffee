@@ -121,14 +121,15 @@ init = ->
     flashClass 'offline-ui-reconnect-succeeded-2s', 2
     flashClass 'offline-ui-reconnect-succeeded-5s', 5
 
-if document.addEventListener?
-  document.addEventListener 'DOMContentLoaded', init, false
-else
+# Problem with QooXDoo handling 'DOMContentLoaded' event
+#if document.addEventListener?
+#  document.addEventListener 'DOMContentLoaded', init, false
+#else
   # IE8
 
-  _onreadystatechange = document.onreadystatechange
-  document.onreadystatechange = ->
-    if document.readyState is 'complete'
-      init()
+_onreadystatechange = document.onreadystatechange
+document.onreadystatechange = ->
+  if document.readyState is 'complete'
+    init()
 
-    _onreadystatechange?(arguments...)
+  _onreadystatechange?(arguments...)
